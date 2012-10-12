@@ -1,0 +1,8 @@
+
+includeFlat "com.bignlp.chim"
+includeFlat "com.bignlp.commons"
+includeFlat "com.bignlp.connector"
+includeFlat "com.bignlp.egg"
+includeFlat "com.bignlp.langy"
+includeFlat "com.bignlp.medam"
+includeFlat "com.bignlp.opm"

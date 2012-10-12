@@ -1,0 +1,5 @@
+dependencies {
+	//	compile group: 'org.apache.tika', name:'tika-core', version:'1.2', transitive:false
+	//	compile group: 'org.apache.tika', name:'tika-parsers', version:'1.2', transitive:false
+	//	compile group: 'org.apache.tika', name:'tika-app', version:'1.2', transitive:false
+}

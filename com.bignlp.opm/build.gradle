@@ -1,0 +1,8 @@
+dependencies {
+	compile ':metamapapi'
+	compile ':prologbeans'
+	compile ':metamapapiuima'
+	compile project(':com.bignlp.commons')
+	compile project(':com.bignlp.egg')
+	compile project(':com.bignlp.langy')
+}

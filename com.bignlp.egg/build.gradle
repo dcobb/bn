@@ -1,0 +1,4 @@
+dependencies {
+	compile project(':com.bignlp.commons')
+	compile group: 'net._01001111', name:"jlorem", version: '1.1'
+}
