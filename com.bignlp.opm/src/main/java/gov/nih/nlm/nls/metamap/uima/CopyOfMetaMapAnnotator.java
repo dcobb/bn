@@ -1,40 +1,27 @@
 package gov.nih.nlm.nls.metamap.uima;
 
-import gov.nih.nlm.nls.metamap.AcronymsAbbrevs;
-import gov.nih.nlm.nls.metamap.ConceptPair;
-import gov.nih.nlm.nls.metamap.Ev;
-import gov.nih.nlm.nls.metamap.MatchMap;
-import gov.nih.nlm.nls.metamap.MetaMapApi;
-import gov.nih.nlm.nls.metamap.MetaMapApiImpl;
-import gov.nih.nlm.nls.metamap.Negation;
-import gov.nih.nlm.nls.metamap.PCM;
-import gov.nih.nlm.nls.metamap.Position;
-import gov.nih.nlm.nls.metamap.Result;
-import gov.nih.nlm.nls.metamap.Utterance;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.*;
+
+import gov.nih.nlm.nls.metamap.*;
 import gov.nih.nlm.nls.metamap.uima.ts.AcronymAbbrev;
 import gov.nih.nlm.nls.metamap.uima.ts.Document;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
+import org.apache.uima.util.Level;
 import org.apache.uima.UimaContext;
-import org.apache.uima.analysis_component.AnalysisComponent;
-import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.FSArray;
-import org.apache.uima.jcas.cas.IntegerArray;
 import org.apache.uima.jcas.cas.StringArray;
+import org.apache.uima.jcas.cas.IntegerArray;
+import org.apache.uima.analysis_component.AnalysisComponent;
+import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.apache.uima.util.Level;
 import org.metamap.uima.ts.CuiConcept;
 import org.metamap.uima.ts.Span;
 
-public class MetaMapAnnotator extends JCasAnnotator_ImplBase implements
+public class CopyOfMetaMapAnnotator extends JCasAnnotator_ImplBase implements
 		AnalysisComponent {
 	private static final String MESSAGE_DIGEST = "AnnotatorMessages";
 
@@ -57,7 +44,7 @@ public class MetaMapAnnotator extends JCasAnnotator_ImplBase implements
 	 * @ordered
 	 */
 	public final static int typeIndexID = JCasRegistry
-			.register(MetaMapAnnotator.class);
+			.register(CopyOfMetaMapAnnotator.class);
 	/**
 	 * @generated
 	 * @ordered
@@ -73,7 +60,7 @@ public class MetaMapAnnotator extends JCasAnnotator_ImplBase implements
 	 * Creates a new <code>MetaMapAnnotator</code> instance.
 	 * 
 	 */
-	public MetaMapAnnotator() {
+	public CopyOfMetaMapAnnotator() {
 
 	}
 

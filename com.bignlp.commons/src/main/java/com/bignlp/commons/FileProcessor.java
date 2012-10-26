@@ -51,11 +51,19 @@ public class FileProcessor implements Callable<FileProcessingResult> {
 	}
 
 	public void process() {
-		this.result.setStatus(Status.completedSuccessfully);
-		if (logger.isDebugEnabled()) {
-			logger.debug("Processed file: " + this.path + " status: "
-					+ this.result.getStatus());
+		try {
+			this.result.setStatus(Status.completedSuccessfully);
+			if (logger.isDebugEnabled()) {
+				logger.debug("Processed file: " + this.path + " status: "
+						+ this.result.getStatus());
+			}
+		} finally {
+			this.destroy();
 		}
+	}
+
+	public void destroy() {
+		// Here goes any cleanup that is to be implemented by subclasses.
 	}
 
 }

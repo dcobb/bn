@@ -1,4 +1,12 @@
 dependencies {
+	compile ':jVinci'
+	compile ':uimaadaptersoap'
+	compile ':uimaadaptervinci'
+	compile ':uimacore'
+	compile ':uimacpe'
+	compile ':uimadocumentannotation'
+	compile ':uimatools'
+	compile ':uimabootstrap'
 	compile ':metamapapi'
 	compile ':prologbeans'
 	compile ':metamapapiuima'

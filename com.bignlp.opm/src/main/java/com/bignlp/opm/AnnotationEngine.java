@@ -45,8 +45,9 @@ public class AnnotationEngine {
 	}
 
 	public void init() {
-		this.executorService = BasicThreadPoolExecutor.createExecutorService(
-				this.queueSize, this.numThreads);
+		this.executorService = BasicThreadPoolExecutor.
+				createExecutorService(this.queueSize, this.numThreads);
+//				.singleThreadExecutorService();
 		this.fileProcessorFactory = new FileAnnotatorFactory();
 		if (logger.isInfoEnabled()) {
 			logger.info("initializing file processing metrics");
@@ -63,6 +64,7 @@ public class AnnotationEngine {
 		if (logger.isInfoEnabled()) {
 			logger.info("Reporting metrics on console");
 		}
+		// FileAnnotator.medicalAnnotator.close();
 		ConsoleReporter consoleReporter = new ConsoleReporter(System.out);
 		consoleReporter.run();
 		if (logger.isInfoEnabled()) {

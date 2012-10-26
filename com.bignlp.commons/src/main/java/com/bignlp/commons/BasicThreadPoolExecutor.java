@@ -2,6 +2,7 @@ package com.bignlp.commons;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadFactory;
@@ -17,11 +18,21 @@ public class BasicThreadPoolExecutor extends ThreadPoolExecutor {
 
 	public static ExecutorService createExecutorService(int argQueueSize,
 			int argNumThreads) {
+		return createExecutorService(argQueueSize, argNumThreads,
+				new ThreadPoolExecutor.CallerRunsPolicy());
+	}
+
+	public static ExecutorService singleThreadExecutorService() {
+		return Executors.newSingleThreadExecutor();
+	}
+
+	public static ExecutorService createExecutorService(int argQueueSize,
+			int argNumThreads, RejectedExecutionHandler argPolicy) {
 		BlockingQueue<Runnable> linkedBlockingQueue = new LinkedBlockingQueue<Runnable>(
 				argQueueSize);
 		ThreadPoolExecutor threadPoolExecutor = new BasicThreadPoolExecutor(
 				argNumThreads, argNumThreads, 3, TimeUnit.SECONDS,
-				linkedBlockingQueue, new ThreadPoolExecutor.CallerRunsPolicy());
+				linkedBlockingQueue, argPolicy);
 		return threadPoolExecutor;
 	}
 

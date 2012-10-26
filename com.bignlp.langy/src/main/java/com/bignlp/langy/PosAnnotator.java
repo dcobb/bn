@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.nio.file.Path;
 
-import opennlp.tools.cmdline.PerformanceMonitor;
 import opennlp.tools.cmdline.postag.POSModelLoader;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSSample;
@@ -14,7 +13,11 @@ import opennlp.tools.tokenize.WhitespaceTokenizer;
 import opennlp.tools.util.ObjectStream;
 import opennlp.tools.util.PlainTextByLineStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class PosAnnotator {
+	private static Logger logger = LoggerFactory.getLogger(PosAnnotator.class);
 	private static final String MODELS_EN_POS_MAXENT_BIN = "../com.bignlp/models/en-pos-maxent.bin";
 	private POSModel model;
 
@@ -23,8 +26,9 @@ public class PosAnnotator {
 				MODELS_EN_POS_MAXENT_BIN));
 	}
 
-	public void annotate(Path argFilePath) {
-		PerformanceMonitor perfMon = new PerformanceMonitor(System.err, "sent");
+	public String annotate(Path argFilePath) {
+		// PerformanceMonitor perfMon = new PerformanceMonitor(System.err,
+		// "sent");
 		POSTaggerME tagger = new POSTaggerME(model);
 
 		ObjectStream<String> lineStream = null;
@@ -33,7 +37,7 @@ public class PosAnnotator {
 			lineStream = new PlainTextByLineStream(new BufferedReader(
 					new FileReader(argFilePath.toFile())));
 
-			perfMon.start();
+			// perfMon.start();
 			String line;
 			while ((line = lineStream.read()) != null) {
 
@@ -42,11 +46,13 @@ public class PosAnnotator {
 				String[] tags = tagger.tag(whitespaceTokenizerLine);
 
 				POSSample sample = new POSSample(whitespaceTokenizerLine, tags);
-				System.out.println(sample.toString());
-
-				perfMon.incrementCounter();
+				String result = sample.toString();
+				if (logger.isDebugEnabled()) {
+					logger.debug(result);
+				}
+				// perfMon.incrementCounter();
+				return result;
 			}
-			perfMon.stopAndPrintFinalResult();
 		} catch (Exception e) {
 			throw new AnnotationException(
 					"Exception while performing POS Annotation", e);
@@ -58,6 +64,8 @@ public class PosAnnotator {
 					// ignore
 				}
 			}
+			// perfMon.stopAndPrintFinalResult();
 		}
+		return null;
 	}
 }

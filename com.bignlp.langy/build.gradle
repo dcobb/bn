@@ -2,4 +2,8 @@ dependencies {
 	compile group:'org.apache.opennlp', name:'opennlp-tools', version:'1.5.2-incubating'
 	//	compile group:'org.apache.opennlp', name:'opennlp-uima', version:'1.5.2-incubating'
 	//	compile group:'org.apache.opennlp', name:'opennlp-maxent', version:'1.5.2-incubating'
+	compile ':metamapapi'
+	compile ':prologbeans'
+	compile ':metamapmps'
+	compile ':metamaptaggerserver'
 }
