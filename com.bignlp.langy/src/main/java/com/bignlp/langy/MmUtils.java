@@ -12,24 +12,16 @@ public class MmUtils {
 		System.setProperty("taggerserver.port", "1795");
 		System.getProperty(
 				"lexFile",
-				"D:/bn/research/umls/public_mm_win32_main_2011/public_mm/MedPost-SKR/data/lexDB.serial");
+				"../com.bignlp/models/lexDB.serial");
 		System.getProperty(
 				"ngramOne",
-				"D:/bn/research/umls/public_mm_win32_main_2011/public_mm/MedPost-SKR/data/ngramOne.serial");
-		taggerServer.main();
+				"../com.bignlp/models/ngramOne.serial");
+		MmTaggerServer.main(new String[] {});
 	}
 
-	/**
-	 * Taken from Kai Schlamp's BasicMetaMapAnnotator.
-	 * 
-	 */
 	private void startDisambiguationServer() {
 	}
 
-	/**
-	 * Taken from Kai Schlamp's BasicMetaMapAnnotator.
-	 * 
-	 */
 	private boolean checkProcess(String processName) throws IOException {
 		ProcessBuilder processBuilder = new ProcessBuilder("ps", "-ef");
 		Process psProcess = processBuilder.start();

@@ -5,5 +5,4 @@ dependencies {
 	compile ':metamapapi'
 	compile ':prologbeans'
 	compile ':metamapmps'
-	compile ':metamaptaggerserver'
 }
