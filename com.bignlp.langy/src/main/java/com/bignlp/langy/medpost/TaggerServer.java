@@ -24,7 +24,7 @@
  *
  ===========================================================================
  */
-package com.bignlp.langy;
+package com.bignlp.langy.medpost;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,6 +33,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 
 /**
  * Multithreaded tagger server.
@@ -50,7 +51,7 @@ import java.net.Socket;
  *        version 1.0, August 18, 2004
  **/
 
-public class MmTaggerServer {
+public class TaggerServer {
 	/**
 	 * server port, defaults to 1795, use system property: taggerserver.port to
 	 * change.
@@ -60,7 +61,7 @@ public class MmTaggerServer {
 	ServerSocket aServerSocket;
 	Tagger tagger = new Tagger();
 
-	public MmTaggerServer() {
+	public TaggerServer() {
 		// Create the server socket.
 
 		try {
@@ -96,7 +97,7 @@ public class MmTaggerServer {
 	} // taggerServer
 
 	public static void main(String[] args) {
-		new MmTaggerServer();
+		new TaggerServer();
 	}
 
 	/**

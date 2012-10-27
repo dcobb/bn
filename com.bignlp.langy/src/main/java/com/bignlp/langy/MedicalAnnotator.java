@@ -5,9 +5,13 @@ import gov.nih.nlm.nls.metamap.Result;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.bignlp.langy.metamap.MetaMapConfig;
+import com.bignlp.langy.metamap.MmClient;
 
 public class MedicalAnnotator {
 	private static Logger logger = LoggerFactory
@@ -15,17 +19,19 @@ public class MedicalAnnotator {
 	private MmClient mmClient;
 
 	public MedicalAnnotator() {
-		this.mmClient = new MmClient("localhost", 8066);
+		this.mmClient = new MmClient("127.0.0.1", MetaMapConfig.getInstance()
+				.getRoundRobinPort());
 		this.mmClient.setTimeout(-1);
+		if (logger.isDebugEnabled()) {
+			logger.debug("Round-robin MmClinet choice: " + mmClient);
+		}
 	}
 
 	public String annotate(Path argFilePath) {
 		try {
 			List<Result> results = new ArrayList<Result>();
-			this.mmClient.process(MmClient.readInputFile(argFilePath.toFile()),
+			mmClient.process(MmClient.readInputFile(argFilePath.toFile()),
 					System.out);
-			// MetaMapApiTest.main(new String[] { "--input",
-			// argFilePath.toFile().getAbsolutePath() });
 			StringBuilder sb = new StringBuilder();
 			if (results != null && !results.isEmpty()) {
 				for (Result result : results) {

@@ -19,11 +19,11 @@ import org.slf4j.LoggerFactory;
 public class PosAnnotator {
 	private static Logger logger = LoggerFactory.getLogger(PosAnnotator.class);
 	private static final String MODELS_EN_POS_MAXENT_BIN = "../com.bignlp/models/en-pos-maxent.bin";
-	private POSModel model;
+	private static POSModel model = new POSModelLoader().load(new File(
+			MODELS_EN_POS_MAXENT_BIN));
 
 	public PosAnnotator() {
-		this.model = new POSModelLoader().load(new File(
-				MODELS_EN_POS_MAXENT_BIN));
+		// Default Constructor
 	}
 
 	public String annotate(Path argFilePath) {

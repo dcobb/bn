@@ -1,0 +1,30 @@
+DATE OF CONSULTATION:  MM/DD/YYYY
+REFERRING PHYSICIAN:  John Doe, MD
+
+CONSULTING PHYSICIAN:  Jane Doe, MD
+
+REASON FOR CONSULTATION:  Surgical evaluation for coronary artery disease.
+
+HISTORY OF PRESENT ILLNESS:  This is a (XX)-year-old female who developed a 3- to 4-month history of some crescendoing exertional dyspnea symptoms.  Prior to admission, she started to note profound shortness of breath after walking about two flights of stairs.  She has never noted any chest pain.  She was seen by her primary care physician after having a severe episode of dyspnea and diaphoresis.  When she was seen, she was found to be hypotensive and tachycardic.  She was admitted for further observation and workup.  CT scan of the head ruled out any acute CVA.  Her EKG showed some nonspecific ST segment changes.  Echocardiography showed a normal left ventricle with some mild hypertrophy.  A carotid duplex scan was also obtained and this was essentially unremarkable for any significant carotid artery stenosis.  An adenosine Cardiolite stress test was obtained and this was suggestive of some ischemia, which prompted a cardiac catheterization on MM/DD/YYYY.  Through this, an 80% lesion to the left anterior descending artery was identified.  The circumflex system had about an 80% stenosis.  The posterior descending artery had about a 70% stenosis.  In view of these findings, surgical consultation was requested and the patient was seen and evaluated by Dr. Doe.
+
+PAST MEDICAL HISTORY:
+
+1.  Coronary artery disease, as described above.
+2.  Hypertension.
+3.  Insulin-dependent diabetes mellitus.
+
+ALLERGIES:  None.
+
+MEDICATIONS:  Medications that she was taking prior to admission included Vasotec, Glucophage, hydrochlorothiazide, Actos and Coreg.  She is also taking Lantus insulin.
+
+SOCIAL HISTORY:  She does not smoke.  She does not abuse alcohol.  She is fairly active.
+
+FAMILY MEDICAL HISTORY:  Significant for premature coronary artery disease in both her mother's and father's sides.
+
+REVIEW OF SYSTEMS:  No history of any CVAs, TIAs or seizures.  She complains of chronic headaches.  No asthma, TB, hemoptysis or productive cough.  There is no congenital heart abnormality or rheumatic fever history.  She has never had any chest pain.  There is no nausea, vomiting, constipation, diarrhea, melena, peptic ulcer disease or any gastrointestinal problems.  There are no thyroid problems, but she does have a history of insulin-dependent diabetes mellitus with peripheral neuropathies and a left footdrop.  There are no musculoskeletal disorders or history of gout.  There are no kidney or liver problems.  There is no dysuria, hematuria or frequency.   She has no depression or psychiatric problems.  There is no hematologic problem or blood dyscrasias.  There are no recent fevers, malaise, changes in appetite or change in weight.
+
+PHYSICAL EXAMINATION:  Blood pressure is 138/70.  She is in sinus rhythm on the EKG monitor with a rate of about 78.  Respirations were 18 and unlabored.  Temperature 97.8 degrees Fahrenheit.  General:  This is a middle-aged, pleasant-appearing female who is currently not in any acute distress.  Her skin color and turgor are good.  Pupils are equal and reactive to light.  Conjunctivae clear.  Throat is benign.  Mucosa moist and noncyanotic.  Neck veins were about 2 to 3 cm at 45 degrees.  Carotids had 2+ upstrokes bilaterally.  I did not hear any bruits.  No lymphadenopathy was appreciated.  Chest had a normal AP diameter.  Lungs were essentially clear in the apices and bases.  No wheezing or galloping appreciated.  Heart had a normal S1, S2.  No murmurs, clicks or gallops.  Abdomen was soft, nontender and nondistended.  Good bowel sounds present.  No hepatosplenomegaly appreciated.  No pulsatile masses felt.  No abdominal bruits heard.  Pulses were 2+ and equal bilaterally in the upper extremities.  Femoral pulses were 1+ bilaterally.  A hematoma was noted in the right groin; this did extend into the thigh.  The pedal pulses were 1+ bilaterally.  Greater saphenous veins distended well.  She was oriented x3.  She demonstrated good equal bilateral strength in the upper extremities.  In the lower extremities, she had good strength on the right side and there was subtle left footdrop noted.
+
+IMPRESSION:  This is a (XX)-year-old female who has significant multivessel coronary artery disease.  She has atypical anginal symptoms, which are probably secondary to her insulin-dependent diabetes mellitus.  Nonetheless, she is at risk for ischemia, and in order to reduce this risk, surgical myocardial revascularization is recommended.
+
+PLAN:  Proceed with coronary artery bypass graft operation utilizing the left internal mammary artery as conduit to the left anterior descending.  The remaining conduit will come from the greater saphenous veins.  The risks and benefits of this procedure were explained to the patient.

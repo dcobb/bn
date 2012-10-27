@@ -45,9 +45,9 @@ public class AnnotationEngine {
 	}
 
 	public void init() {
-		this.executorService = BasicThreadPoolExecutor.
-				createExecutorService(this.queueSize, this.numThreads);
-//				.singleThreadExecutorService();
+		this.executorService = BasicThreadPoolExecutor
+				.singleThreadExecutorService();
+		// createExecutorService(this.queueSize, this.numThreads);
 		this.fileProcessorFactory = new FileAnnotatorFactory();
 		if (logger.isInfoEnabled()) {
 			logger.info("initializing file processing metrics");
