@@ -8,10 +8,13 @@ subprojects {
 	repositories {
 		flatDir name:'localfsrepo', dirs: '../com.bignlp/lib'
 		mavenCentral()
+		maven { url 'http://opennlp.sourceforge.net/maven2/' }
 	}
 
 	uploadArchives {
-		repositories { flatDir { dirs 'repos' } }
+		repositories {
+			flatDir { dirs 'repos' }
+		}
 	}
 	dependencies {
 		compile  ':objectexplorer'
