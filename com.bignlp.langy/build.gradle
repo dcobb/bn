@@ -1,4 +1,5 @@
 dependencies {
 	compile group:'org.apache.opennlp', name:'opennlp-tools', version:'1.5.2-incubating'
+	compile group:'jwnl', name:'jwnl', version:'1.3.3'
 	compile ':prologbeans'
 }
