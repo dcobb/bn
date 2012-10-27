@@ -1,17 +1,15 @@
 package com.bignlp.langy;
 
-import gov.nih.nlm.nls.metamap.Result;
-
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bignlp.langy.metamap.MetaMapConfig;
 import com.bignlp.langy.metamap.MmClient;
+import com.bignlp.langy.metamap.Result;
 
 public class MedicalAnnotator {
 	private static Logger logger = LoggerFactory

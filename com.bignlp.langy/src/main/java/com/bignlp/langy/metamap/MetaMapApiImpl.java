@@ -1,11 +1,17 @@
 package com.bignlp.langy.metamap;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.Reader;
 import java.net.ConnectException;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import se.sics.prologbeans.*;
+import java.util.List;
+
+import se.sics.prologbeans.Bindings;
+import se.sics.prologbeans.PBTerm;
+import se.sics.prologbeans.PrologSession;
+import se.sics.prologbeans.QueryAnswer;
 
 /**
  * The default implementation of the MetaMapApi interface.

@@ -1,6 +1,6 @@
 package com.bignlp.langy.metamap;
 
-import se.sics.prologbeans.*;
+import se.sics.prologbeans.PBTerm;
 
 /**
  * Position implementation class.

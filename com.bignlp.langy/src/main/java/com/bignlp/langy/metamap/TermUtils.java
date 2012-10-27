@@ -1,8 +1,9 @@
 package com.bignlp.langy.metamap;
 
-import java.util.List;
 import java.util.ArrayList;
-import se.sics.prologbeans.*;
+import java.util.List;
+
+import se.sics.prologbeans.PBTerm;
 
 /**
  * Utility functions for dealing with Terms.

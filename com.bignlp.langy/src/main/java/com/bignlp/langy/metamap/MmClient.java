@@ -1,24 +1,10 @@
 package com.bignlp.langy.metamap;
 
-import gov.nih.nlm.nls.metamap.AcronymsAbbrevs;
-import gov.nih.nlm.nls.metamap.ConceptPair;
-import gov.nih.nlm.nls.metamap.Ev;
-import gov.nih.nlm.nls.metamap.Mapping;
-import gov.nih.nlm.nls.metamap.MetaMapApi;
-import gov.nih.nlm.nls.metamap.MetaMapApiImpl;
-import gov.nih.nlm.nls.metamap.Negation;
-import gov.nih.nlm.nls.metamap.PCM;
-import gov.nih.nlm.nls.metamap.Position;
-import gov.nih.nlm.nls.metamap.Result;
-import gov.nih.nlm.nls.metamap.Utterance;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;

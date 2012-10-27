@@ -1,13 +1,12 @@
 package com.bignlp.langy.metamap;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.File;
-import java.util.List;
 import java.util.ArrayList;
-import se.sics.prologbeans.PrologSession;
+import java.util.List;
 
 /**
  * MetaMapApiTest: An implementation of MetaMapApi Test Class.

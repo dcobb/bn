@@ -27,7 +27,6 @@
 
 package com.bignlp.langy.medpost;
 
-import java.lang.Character;
 
 /**
  * Determine proper tag for each word.

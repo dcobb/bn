@@ -1,6 +1,5 @@
 package com.bignlp.langy.metamap;
 
-import java.util.List;
 
 /**
  * An interface for representing a MetaMap map term.  Essentially, a
