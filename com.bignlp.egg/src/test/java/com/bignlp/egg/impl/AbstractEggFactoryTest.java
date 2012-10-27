@@ -231,6 +231,7 @@ public abstract class AbstractEggFactoryTest {
 	}
 
 	@Test
+	@Ignore
 	public void testLookup() throws Exception {
 		collectGarbage();
 		ExecutorService executorService = BasicThreadPoolExecutor

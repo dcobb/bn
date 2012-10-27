@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.bignlp.egg.Glossary;
@@ -27,6 +28,7 @@ public class LoremGlossaryTest {
 	}
 
 	@Test
+	@Ignore
 	public void testNext() {
 		LoremGlossary<Integer> loremGlossary = new LoremGlossary<Integer>(100);
 		for (Glossary.Entry<Integer> entry : loremGlossary) {
