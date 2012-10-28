@@ -1,8 +1,7 @@
 package com.bignlp.langy.metamap.result;
 
-import com.bignlp.langy.metamap.Position;
 
-public class MetaMapPosition implements Position {
+public class MetaMapPosition  {
 	private int x;
 	private int y;
 
