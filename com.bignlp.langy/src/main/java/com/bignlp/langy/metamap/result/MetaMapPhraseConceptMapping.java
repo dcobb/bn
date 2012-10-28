@@ -6,18 +6,21 @@ public class MetaMapPhraseConceptMapping {
 	private MetaMapPhrase phrase;
 	private List<MetaMapEvaluation> candidates;
 	private MetaMapCandidates candidateInstance;
+	private List<MetaMapMapping> metaMapMappings;
 
 	public MetaMapPhraseConceptMapping() {
 		super();
 	}
 
-	public MetaMapPhraseConceptMapping(MetaMapPhrase argsPhrase,
-			List<MetaMapEvaluation> argsCandidates,
-			MetaMapCandidates argsCandidateInstance) {
+	public MetaMapPhraseConceptMapping(MetaMapPhrase argPhrase,
+			List<MetaMapEvaluation> argCandidates,
+			MetaMapCandidates argCandidateInstance,
+			List<MetaMapMapping> argMetaMapMappings) {
 		super();
-		this.phrase = argsPhrase;
-		this.candidates = argsCandidates;
-		this.candidateInstance = argsCandidateInstance;
+		this.phrase = argPhrase;
+		this.candidates = argCandidates;
+		this.candidateInstance = argCandidateInstance;
+		this.metaMapMappings = argMetaMapMappings;
 	}
 
 	public MetaMapPhrase getPhrase() {
@@ -42,6 +45,14 @@ public class MetaMapPhraseConceptMapping {
 
 	public void setCandidateInstance(MetaMapCandidates argsCandidateInstance) {
 		this.candidateInstance = argsCandidateInstance;
+	}
+
+	public List<MetaMapMapping> getMetaMapMappings() {
+		return this.metaMapMappings;
+	}
+
+	public void setMetaMapMappings(List<MetaMapMapping> argMetaMapMappings) {
+		this.metaMapMappings = argMetaMapMappings;
 	}
 
 }
