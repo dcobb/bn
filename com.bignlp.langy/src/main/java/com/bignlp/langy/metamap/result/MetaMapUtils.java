@@ -14,6 +14,7 @@ import com.bignlp.langy.metamap.Phrase;
 import com.bignlp.langy.metamap.Position;
 import com.bignlp.langy.metamap.Result;
 import com.bignlp.langy.metamap.Utterance;
+import com.google.gson.JsonElement;
 
 public class MetaMapUtils {
 
@@ -65,7 +66,7 @@ public class MetaMapUtils {
 					metaMapPosition.setY(position.getY());
 					metaMapUtterance.setPosition(metaMapPosition);
 				}
-				List<MetaMapPhraseConceptMapping> metaMapPhraseConceptMappingsList = buildPhraseConceptmapping(utterance);
+				List<MetaMapPhraseConceptMapping> metaMapPhraseConceptMappingsList = new ArrayList<MetaMapPhraseConceptMapping>(); // buildPhraseConceptmapping(utterance);
 				if (metaMapPhraseConceptMappingsList != null) {
 					metaMapUtterance
 							.setPhraseConceptMappings(metaMapPhraseConceptMappingsList);
@@ -89,12 +90,12 @@ public class MetaMapUtils {
 					if (metaMapPhrase != null) {
 						metaMapPhraseConceptMapping.setPhrase(metaMapPhrase);
 					}
-					MetaMapCandidates metaMapCandidates = buildMetaMapCandidates(pcm);
+					MetaMapCandidates metaMapCandidates = new MetaMapCandidates(); // buildMetaMapCandidates(pcm);
 					if (metaMapCandidates != null) {
 						metaMapPhraseConceptMapping
 								.setCandidateInstance(metaMapCandidates);
 					}
-					List<Ev> candidatesList = pcm.getCandidateList();
+					List<Ev> candidatesList = new ArrayList<Ev>(); // pcm.getCandidateList();
 					List<MetaMapEvaluation> metaMapEvaluationsList = buildEvList(candidatesList);
 					if (metaMapEvaluationsList != null
 							&& metaMapEvaluationsList.size() > 0) {
@@ -298,5 +299,14 @@ public class MetaMapUtils {
 			}
 		}
 		return metaMapNegationList;
+	}
+
+	public static List<MetaMapResult> createMetaMapResults(
+			List<Result> argsResults) {
+		List<MetaMapResult> mmResults = new ArrayList<MetaMapResult>();
+		for (Result result : argsResults) {
+			mmResults.add(createMetaMapResult(result));
+		}
+		return mmResults;
 	}
 }

@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.bignlp.langy.metamap.MetaMapConfig;
 import com.bignlp.langy.metamap.MmClient;
 import com.bignlp.langy.metamap.Result;
+import com.bignlp.langy.metamap.result.MetaMapUtils;
 import com.google.gson.Gson;
 
 public class MedicalAnnotator {
@@ -32,9 +33,9 @@ public class MedicalAnnotator {
 		try {
 			List<Result> results = mmClient.process(
 					MmClient.readInputFile(argFilePath.toFile()), System.out);
-			String annotatedString = this.asMachineOutputString(results);
+			String annotatedString = this.toJsonString(results);
+			// this.asMachineOutputString(results);
 			// this.toString(results);
-			// this.toJsonString(results);
 			// this.serializeResultsToDisk(argFilePath,results);
 			if (logger.isDebugEnabled()) {
 				logger.debug(annotatedString);
@@ -53,7 +54,8 @@ public class MedicalAnnotator {
 	private String toJsonString(List<Result> results) {
 		Gson gson = new Gson();
 		// new GsonBuilder().setPrettyPrinting().create();
-		String jsonOutput = gson.toJson(results);
+		String jsonOutput = gson.toJson(MetaMapUtils
+				.createMetaMapResults(results));
 		return jsonOutput;
 	}
 
