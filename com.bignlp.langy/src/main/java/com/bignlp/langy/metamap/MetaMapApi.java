@@ -7,7 +7,7 @@ import se.sics.prologbeans.PrologSession;
 
 /**
  * This provides a generic interface to access the MetaMap server:
- *
+ * 
  * <pre>
  *  MetaMapApi api = new MetaMapApiImpl();
  *  if (theOptions.size() > 0) {
@@ -21,7 +21,8 @@ import se.sics.prologbeans.PrologSession;
  *  }
  * </pre>
  * <p>
- * MetaMap options available in the api: 
+ * MetaMap options available in the api:
+ * 
  * <pre>
  *   -@ --WSD &lt;hostname&gt;   : Which WSD server to use.
  *   -8 --dynamic_variant_generation : dynamic variant generation
@@ -47,163 +48,206 @@ import se.sics.prologbeans.PrologSession;
  *   -o --allow_overmatches : allow overmatches 
  *   -r --threshold &lt;integer&gt;          : Threshold for displaying candidates. 
  *   -y --word_sense_disambiguation : use WSD 
- *   -z --term_processing : use term processing 
+ *   -z --term_processing : use term processing
  * </pre>
- *
+ * 
  * Created: Wed Apr 29 14:09:20 2009
- *
+ * 
  * @author <a href="mailto:wrogers@nlm.nih.gov">Willie Rogers</a>
  * @version 1.0
  */
 public interface MetaMapApi {
 
-  /** Default time out for api session */
-  public static final int DEFAULT_TIMEOUT = 0;
-  /** default hostname of MetaMap server */
-  public static final String DEFAULT_SERVER_HOST = "localhost";
-  /** default port of MetaMap server */
-  public static final int DEFAULT_SERVER_PORT = 8066;
+	/** Default time out for api session */
+	public static final int DEFAULT_TIMEOUT = 0;
+	/** default hostname of MetaMap server */
+	public static final String DEFAULT_SERVER_HOST = "localhost";
+	/** default port of MetaMap server */
+	public static final int DEFAULT_SERVER_PORT = 8066;
 
-  /** Get the server's current option settings. 
-   * @return string containing long format of options.
-   */
-  String getOptions();
+	/**
+	 * Get the server's current option settings.
+	 * 
+	 * @return string containing long format of options.
+	 */
+	String getOptions();
 
-  /**
-   * Set MetaMap server options 
-   * <p>
-   * using a string of the form:
-   *   * <pre>
-   *    "-option1 optional-argument1 -option2 optional-argument2"
-   * </pre>
-   * E.G.:
-   * <pre>
-   *    "-yD" or "-y -D" or 
-   *  </pre>
-   *
-   * @param optionString a string of MetaMap options
-   */
-  void setOptions(String optionString);
+	/**
+	 * Set MetaMap server options
+	 * <p>
+	 * using a string of the form: *
+	 * 
+	 * <pre>
+	 * &quot;-option1 optional-argument1 -option2 optional-argument2&quot;
+	 * </pre>
+	 * 
+	 * E.G.:
+	 * 
+	 * <pre>
+	 *    "-yD" or "-y -D" or
+	 * </pre>
+	 * 
+	 * @param optionString
+	 *            a string of MetaMap options
+	 */
+	void setOptions(String optionString);
 
-  /**    
-   * Set MetaMap server options.
-   * <p>
-   * using array of form:
-   * <pre>
-   *  ["-y", "-D"] or ["-yD"]
-   * </pre>
-   * @param options an array of  options
-   */
-  void setOptions(String[] options);
+	/**
+	 * Set MetaMap server options.
+	 * <p>
+	 * using array of form:
+	 * 
+	 * <pre>
+	 *  ["-y", "-D"] or ["-yD"]
+	 * </pre>
+	 * 
+	 * @param options
+	 *            an array of options
+	 */
+	void setOptions(String[] options);
 
-  /**
-   * Set MetaMap server options.
-   * <p>
-   * list of the form:
-   * <pre>
-   *  ["-y", "-D"] or ["-yD"]
-   * </pre>
-   *
-   * @param options a list of options
-   */
-  void setOptions(List<String> options);
+	/**
+	 * Set MetaMap server options.
+	 * <p>
+	 * list of the form:
+	 * 
+	 * <pre>
+	 *  ["-y", "-D"] or ["-yD"]
+	 * </pre>
+	 * 
+	 * @param options
+	 *            a list of options
+	 */
+	void setOptions(List<String> options);
 
-  /**
-   * Set MetaMap server options.
-   * <p>
-   * This method sends preprocessed options to MetaMap server.  The
-   * parameter optionListString is in the form of:
-   * <pre>
-   *   "[" + "'" + option + "'" + "," + + "'" + option + "'" + ... "]"
-   * </pre>
-   * E.G.:
-   * <pre>
-   *    optionListString = "['-y','-D','-i']"; 
-   * </pre>
-   *  or:
-   * <pre>
-   *    optionListString = "['-yDi']"; 
-   * </pre>
-   * sets options -y -D and -i.
-   *   
-   * @param optionListString a string of MetaMap options
-   */
-  void invokeSetOptions(String optionListString);
+	/**
+	 * Set MetaMap server options.
+	 * <p>
+	 * This method sends preprocessed options to MetaMap server. The parameter
+	 * optionListString is in the form of:
+	 * 
+	 * <pre>
+	 *   "[" + "'" + option + "'" + "," + + "'" + option + "'" + ... "]"
+	 * </pre>
+	 * 
+	 * E.G.:
+	 * 
+	 * <pre>
+	 * optionListString = &quot;['-y','-D','-i']&quot;;
+	 * </pre>
+	 * 
+	 * or:
+	 * 
+	 * <pre>
+	 * optionListString = &quot;['-yDi']&quot;;
+	 * </pre>
+	 * 
+	 * sets options -y -D and -i.
+	 * 
+	 * @param optionListString
+	 *            a string of MetaMap options
+	 */
+	void invokeSetOptions(String optionListString);
 
-  /**
-   * Un-set options 
-   * <p>
-   * string is of the form:
-   * <pre>
-   *    "-option1 optional-argument1 -option2 optional-argument2"
-   * </pre>
-   * E.G.:
-   * <pre>
-   *    "-yD" or "-y -D" or 
-   *  </pre>
-   *
-   * @param optionString a string of MetaMap options
-   */
- void unsetOptions(String optionString);
+	/**
+	 * Un-set options
+	 * <p>
+	 * string is of the form:
+	 * 
+	 * <pre>
+	 * &quot;-option1 optional-argument1 -option2 optional-argument2&quot;
+	 * </pre>
+	 * 
+	 * E.G.:
+	 * 
+	 * <pre>
+	 *    "-yD" or "-y -D" or
+	 * </pre>
+	 * 
+	 * @param optionString
+	 *            a string of MetaMap options
+	 */
+	void unsetOptions(String optionString);
 
-  /**
-   * Un-set options 
-   *<p>
-   * The list is a list of strings of the form:
-   *
-   * <pre>
-   *  ["-y", "-D"] or ["-yD"]
-   * </pre>
-   *
-   * @param options a list of options
-   */
-  void unsetOptions(List<String> options);
+	/**
+	 * Un-set options
+	 * <p>
+	 * The list is a list of strings of the form:
+	 * 
+	 * <pre>
+	 *  ["-y", "-D"] or ["-yD"]
+	 * </pre>
+	 * 
+	 * @param options
+	 *            a list of options
+	 */
+	void unsetOptions(List<String> options);
 
-  /** Reset options to defaults */
-  void resetOptions();
+	/** Reset options to defaults */
+	void resetOptions();
 
-  /** process a string containing one or more documents - unicode (utf8) is not supported
-   * @param aString a file of documents
-   * @return a list of one of more result instances
-   */
-  public List<Result> processCitationsFromString(String aString);
+	/**
+	 * process a string containing one or more documents - unicode (utf8) is not
+	 * supported
+	 * 
+	 * @param aString
+	 *            a file of documents
+	 * @return a list of one of more result instances
+	 */
+	public List<Result> processCitationsFromString(String aString);
 
+	/**
+	 * Process a ASCII text stream reader of one or more documents - unicode
+	 * (utf8) is not supported
+	 * 
+	 * @param inputReader
+	 *            a reader stream of documents
+	 * @return a list of one or more result instances
+	 */
+	public List<Result> processCitationsFromReader(Reader inputReader);
 
-  /** Process a ASCII text stream reader of one or more documents - unicode (utf8) is not supported
-   * @param inputReader a reader stream of documents
-   * @return a list of one or more result instances
-   */
-  public List<Result> processCitationsFromReader(Reader inputReader);
+	/**
+	 * Process a ASCII text file of one or more documents - unicode (utf8) is
+	 * not supported
+	 * 
+	 * @param inputFilename
+	 *            the filename of a file of documents
+	 * @return a list of one or more result instances
+	 */
+	public List<Result> processCitationsFromFile(String inputFilename);
 
-  /** Process a ASCII text file of one or more documents - unicode (utf8) is not supported
-   * @param inputFilename the filename of a file of documents
-   * @return a list of one or more result instances
-   */
-  public List<Result> processCitationsFromFile(String inputFilename);
+	/**
+	 * Return Prolog session associated with this instance of the API.
+	 * 
+	 * @return prolog beans session associated with api.
+	 */
+	PrologSession getSession();
 
-  /** 
-   * Return Prolog session associated with this instance of the API. 
-   * @return prolog beans session associated with api. */
-  PrologSession getSession();
+	/**
+	 * Set time for api prolog session.
+	 * 
+	 * @param timeout
+	 *            time in milliseconds to wait for prolog server before timing
+	 *            out.
+	 */
+	public void setTimeout(int timeout);
 
- /**
-   * Set time for api prolog session.
-   * @param timeout time in milliseconds to wait for prolog server before timing out.
-   */
-  public void setTimeout(int timeout);
+	/**
+	 * Use MetaMap server on specified port
+	 * 
+	 * @param port
+	 *            of MetaMap server to use.
+	 */
+	public void setPort(int port);
 
-  /**
-   * Use MetaMap server on specified port
-   * @param port of MetaMap server to use.
-   */
-  public void setPort(int port);
+	/**
+	 * Use MetaMap server on specified host
+	 * 
+	 * @param hostname
+	 *            hostname of non-local metamap server
+	 */
+	public void setHost(String hostname);
 
-  /**
-   * Use MetaMap server on specified host
-   * @param hostname hostname of non-local metamap server
-   */
-  public void setHost(String hostname);
-
-  /** disconnect from server. */
-  void disconnect();
+	/** disconnect from server. */
+	void disconnect();
 }

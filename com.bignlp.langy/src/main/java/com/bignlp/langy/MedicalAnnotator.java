@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.bignlp.langy.metamap.MetaMapConfig;
 import com.bignlp.langy.metamap.MmClient;
 import com.bignlp.langy.metamap.Result;
+import com.bignlp.langy.metamap.ResultImpl;
 
 public class MedicalAnnotator {
 	private static Logger logger = LoggerFactory
@@ -31,11 +32,13 @@ public class MedicalAnnotator {
 		try {
 			List<Result> results = mmClient.process(
 					MmClient.readInputFile(argFilePath.toFile()), System.out);
-			String serFileName = this.serializeResultsToDisk(argFilePath,
-					results);
-			// String annotatedString = this.asString(results);
-			// return annotatedString;
-			return serFileName;
+			String annotatedString = this.toString(results);
+			// this.asMachineOutputString(results);
+			// this.serializeResultsToDisk(argFilePath,results);
+			if (logger.isDebugEnabled()) {
+				logger.debug(annotatedString);
+			}
+			return annotatedString;
 		} catch (Exception e) {
 			throw new AnnotationException(
 					"Exception while performing POS Annotation", e);
@@ -46,6 +49,7 @@ public class MedicalAnnotator {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private String serializeResultsToDisk(Path argFilePath, List<Result> results) {
 		ObjectOutputStream oos = null;
 		try {
@@ -73,7 +77,21 @@ public class MedicalAnnotator {
 		return null;
 	}
 
-	private String asString(List<Result> results) {
+	private String toString(List<Result> results) {
+		StringBuilder sb = new StringBuilder();
+		if (results != null && !results.isEmpty()) {
+			for (Result result : results) {
+				if (result != null) {
+					String machineOutput = result.toString();
+					sb.append(machineOutput);
+				}
+			}
+		}
+		String annotatedString = sb.toString();
+		return annotatedString;
+	}
+
+	private String asMachineOutputString(List<Result> results) {
 		StringBuilder sb = new StringBuilder();
 		if (results != null && !results.isEmpty()) {
 			for (Result result : results) {
@@ -88,6 +106,11 @@ public class MedicalAnnotator {
 			logger.debug(annotatedString);
 		}
 		return annotatedString;
+	}
+
+	private Result readFromMachineOutput(String argMachineOutputString) {
+
+		return null;
 	}
 
 	public void close() {

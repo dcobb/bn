@@ -15,9 +15,9 @@ import se.sics.prologbeans.PBTerm;
  * @version 1.0
  */
 public class PCMBase implements PCM {
-	 PBTerm phraseTerm;
-	 PBTerm candidatesTerm;
-	 PBTerm mappingsTerm;
+	PBTerm phraseTerm;
+	PBTerm candidatesTerm;
+	PBTerm mappingsTerm;
 
 	/**
 	 * Creates a new <code>PCMBase</code> instance.
@@ -156,7 +156,7 @@ public class PCMBase implements PCM {
 		// this class is actually the sublist of the match map of the form
 		// [[pms,pme],[cms,cme],lv]
 
-		public  PBTerm prologList;
+		public PBTerm prologList;
 
 		public MatchMapImpl(PBTerm prologList) {
 			this.prologList = prologList;
@@ -241,7 +241,7 @@ public class PCMBase implements PCM {
 	}
 
 	class EvImpl implements Ev {
-		 PBTerm evTerm;
+		PBTerm evTerm;
 
 		public EvImpl(PBTerm newEvTerm) throws Exception {
 			if (newEvTerm.isCompound())
@@ -348,7 +348,7 @@ public class PCMBase implements PCM {
 	}
 
 	class CandidatesImpl implements Candidates {
-		 PBTerm candidatesTerm;
+		PBTerm candidatesTerm;
 
 		public CandidatesImpl(PBTerm newCandidatesTerm) throws Exception {
 			if (newCandidatesTerm.isCompound())
@@ -386,7 +386,7 @@ public class PCMBase implements PCM {
 	}
 
 	class MappingImpl implements Map, Mapping {
-		 PBTerm mapTerm;
+		PBTerm mapTerm;
 
 		public MappingImpl(PBTerm newMapTerm) throws Exception {
 			if (newMapTerm.isCompound())

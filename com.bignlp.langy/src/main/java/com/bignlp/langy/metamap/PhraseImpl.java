@@ -11,7 +11,7 @@ import se.sics.prologbeans.PBTerm;
  * @version 1.0
  */
 public class PhraseImpl implements Phrase {
-	 PBTerm phraseTerm;
+	PBTerm phraseTerm;
 
 	/**
 	 * Creates a new <code>PhraseImpl</code> instance.

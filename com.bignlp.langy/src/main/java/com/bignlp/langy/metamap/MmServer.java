@@ -1,5 +1,11 @@
 package com.bignlp.langy.metamap;
 
+import static com.bignlp.langy.metamap.MetaMapConfigConstants.DEFAULT_TAGGER_SERVER_LEX_DB;
+import static com.bignlp.langy.metamap.MetaMapConfigConstants.DEFAULT_TAGGER_SERVER_NGRAM_ONE;
+import static com.bignlp.langy.metamap.MetaMapConfigConstants.TAGGER_SERVER_LEX_DB;
+import static com.bignlp.langy.metamap.MetaMapConfigConstants.TAGGER_SERVER_NGRAM_ONE;
+import static com.bignlp.langy.metamap.MetaMapConfigConstants.TAGGER_SERVER_PORT;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
@@ -10,7 +16,6 @@ import com.bignlp.langy.medpost.TaggerServer;
 public class MmServer {
 	private static final MmServer instance = new MmServer();
 	private MetaMapConfig metaMapConfig;
-	private Process mmServerProcess;
 
 	public static MmServer getInstance() {
 		return instance;
@@ -26,12 +31,11 @@ public class MmServer {
 	}
 
 	public void startTaggerServer() {
-		System.setProperty(MetaMapConfig.TAGGER_SERVER_PORT,
+		System.setProperty(TAGGER_SERVER_PORT,
 				this.metaMapConfig.getTaggerServerPortAsString());
-		System.setProperty(MetaMapConfig.TAGGER_SERVER_LEX_DB,
-				MetaMapConfig.DEFAULT_TAGGER_SERVER_LEX_DB);
-		System.setProperty(MetaMapConfig.TAGGER_SERVER_NGRAM_ONE,
-				MetaMapConfig.DEFAULT_TAGGER_SERVER_NGRAM_ONE);
+		System.setProperty(TAGGER_SERVER_LEX_DB, DEFAULT_TAGGER_SERVER_LEX_DB);
+		System.setProperty(TAGGER_SERVER_NGRAM_ONE,
+				DEFAULT_TAGGER_SERVER_NGRAM_ONE);
 		TaggerServer.main(new String[] {});
 	}
 
@@ -48,8 +52,7 @@ public class MmServer {
 		// ignore.printStackTrace();
 		// }
 		// }
-		this.mmServerProcess = null;
-		startServer(this.metaMapConfig.getMmServerPath(),
+		this.startServer(this.metaMapConfig.getMmServerPath(),
 				this.metaMapConfig.getMmServerProcessName());
 	}
 
