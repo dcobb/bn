@@ -1,7 +1,9 @@
 package com.bignlp.langy;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -27,23 +29,13 @@ public class MedicalAnnotator {
 
 	public String annotate(Path argFilePath) {
 		try {
-			List<Result> results = new ArrayList<Result>();
-			mmClient.process(MmClient.readInputFile(argFilePath.toFile()),
-					System.out);
-			StringBuilder sb = new StringBuilder();
-			if (results != null && !results.isEmpty()) {
-				for (Result result : results) {
-					if (result != null) {
-						String machineOutput = result.getMachineOutput();
-						sb.append(machineOutput);
-					}
-				}
-			}
-			String annotatedString = sb.toString();
-			if (logger.isDebugEnabled()) {
-				logger.debug(annotatedString);
-			}
-			return annotatedString;
+			List<Result> results = mmClient.process(
+					MmClient.readInputFile(argFilePath.toFile()), System.out);
+			String serFileName = this.serializeResultsToDisk(argFilePath,
+					results);
+			// String annotatedString = this.asString(results);
+			// return annotatedString;
+			return serFileName;
 		} catch (Exception e) {
 			throw new AnnotationException(
 					"Exception while performing POS Annotation", e);
@@ -52,6 +44,50 @@ public class MedicalAnnotator {
 				logger.debug("Done processing file: " + argFilePath);
 			}
 		}
+	}
+
+	private String serializeResultsToDisk(Path argFilePath, List<Result> results) {
+		ObjectOutputStream oos = null;
+		try {
+			String serFileName = argFilePath.toAbsolutePath()
+					+ ".medicalannotator.ser";
+			oos = new ObjectOutputStream(new BufferedOutputStream(
+					new FileOutputStream(serFileName)));
+			oos.writeObject(results);
+			return serFileName;
+		} catch (Exception e) {
+			if (logger.isErrorEnabled()) {
+				logger.error(
+						"exception while serializing the result for file: "
+								+ argFilePath.toFile().getAbsolutePath(), e);
+			}
+		} finally {
+			if (oos != null) {
+				try {
+					oos.close();
+				} catch (Exception ignore) {
+					// ignore
+				}
+			}
+		}
+		return null;
+	}
+
+	private String asString(List<Result> results) {
+		StringBuilder sb = new StringBuilder();
+		if (results != null && !results.isEmpty()) {
+			for (Result result : results) {
+				if (result != null) {
+					String machineOutput = result.getMachineOutput();
+					sb.append(machineOutput);
+				}
+			}
+		}
+		String annotatedString = sb.toString();
+		if (logger.isDebugEnabled()) {
+			logger.debug(annotatedString);
+		}
+		return annotatedString;
 	}
 
 	public void close() {

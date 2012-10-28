@@ -27,7 +27,7 @@ import se.sics.prologbeans.PBTerm;
  */
 public class ResultImpl implements Result {
 
-	private PBTerm mmoTermList;
+	private  PBTerm mmoTermList;
 	// private static final int ARGS_INDEX = 1;
 	private static final int ACRONYMS_ABBREVS_INDEX = 2;
 	private static final int NEGATIONLIST_INDEX = 3;

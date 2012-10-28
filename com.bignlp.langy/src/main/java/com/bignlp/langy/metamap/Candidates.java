@@ -2,6 +2,8 @@ package com.bignlp.langy.metamap;
 
 import java.util.List;
 
+
+
 /**
  * An interface for representing a MetaMap candidate term.
  * A list of Ev terms that are candidates for mapping.

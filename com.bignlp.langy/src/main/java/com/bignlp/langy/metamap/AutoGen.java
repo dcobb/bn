@@ -1,6 +1,8 @@
 package com.bignlp.langy.metamap;
 
 import se.sics.prologbeans.Bindings;
+
+
 import se.sics.prologbeans.PBTerm;
 import se.sics.prologbeans.PrologSession;
 import se.sics.prologbeans.QueryAnswer;

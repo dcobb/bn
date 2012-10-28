@@ -2,6 +2,7 @@ package com.bignlp.langy.metamap;
 
 import java.util.List;
 
+
 /**
  * The interface for MetaMap Acronyms and Abbreviations.
  *
