@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.bignlp.langy.metamap.MetaMapConfig;
 import com.bignlp.langy.metamap.MmClient;
 import com.bignlp.langy.metamap.Result;
-import com.bignlp.langy.metamap.ResultImpl;
+import com.google.gson.Gson;
 
 public class MedicalAnnotator {
 	private static Logger logger = LoggerFactory
@@ -32,8 +32,9 @@ public class MedicalAnnotator {
 		try {
 			List<Result> results = mmClient.process(
 					MmClient.readInputFile(argFilePath.toFile()), System.out);
-			String annotatedString = this.toString(results);
-			// this.asMachineOutputString(results);
+			String annotatedString = this.asMachineOutputString(results);
+			// this.toString(results);
+			// this.toJsonString(results);
 			// this.serializeResultsToDisk(argFilePath,results);
 			if (logger.isDebugEnabled()) {
 				logger.debug(annotatedString);
@@ -47,6 +48,13 @@ public class MedicalAnnotator {
 				logger.debug("Done processing file: " + argFilePath);
 			}
 		}
+	}
+
+	private String toJsonString(List<Result> results) {
+		Gson gson = new Gson();
+		// new GsonBuilder().setPrettyPrinting().create();
+		String jsonOutput = gson.toJson(results);
+		return jsonOutput;
 	}
 
 	@SuppressWarnings("unused")
@@ -77,6 +85,7 @@ public class MedicalAnnotator {
 		return null;
 	}
 
+	@SuppressWarnings("unused")
 	private String toString(List<Result> results) {
 		StringBuilder sb = new StringBuilder();
 		if (results != null && !results.isEmpty()) {
