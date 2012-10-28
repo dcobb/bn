@@ -62,7 +62,7 @@ var jsonFromServer = {
 				"source" : "WebMD",
 				"url" : "http://www.webmd.com/Coronary_Artery_Disease",
 				"summary" : "Here goes the summary of coronary artery disease from WebMD pages",
-			}],
+			}]
 		}
 	}, {
 		// second annotation goes here
