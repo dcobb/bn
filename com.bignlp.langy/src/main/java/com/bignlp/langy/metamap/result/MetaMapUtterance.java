@@ -1,8 +1,9 @@
 package com.bignlp.langy.metamap.result;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MetaMapUtterance {
+public class MetaMapUtterance  implements Serializable{
 	private String id;
 	private String text;
 	private MetaMapPosition position;

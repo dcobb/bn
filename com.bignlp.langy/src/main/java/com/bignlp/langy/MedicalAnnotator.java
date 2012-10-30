@@ -1,9 +1,13 @@
 package com.bignlp.langy;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.ObjectOutputStream;
+import java.io.Writer;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.bignlp.langy.metamap.MetaMapConfig;
 import com.bignlp.langy.metamap.MmClient;
 import com.bignlp.langy.metamap.Result;
+import com.bignlp.langy.metamap.result.MetaMapResult;
 import com.bignlp.langy.metamap.result.MetaMapUtils;
 import com.google.gson.Gson;
 
@@ -29,18 +34,13 @@ public class MedicalAnnotator {
 		}
 	}
 
-	public String annotate(Path argFilePath) {
+	public void annotate(Path argFilePath) {
 		try {
 			List<Result> results = mmClient.process(
 					MmClient.readInputFile(argFilePath.toFile()), System.out);
-			String annotatedString = this.toJsonString(results);
-			// this.asMachineOutputString(results);
-			// this.toString(results);
-			// this.serializeResultsToDisk(argFilePath,results);
-			if (logger.isDebugEnabled()) {
-				logger.debug(annotatedString);
-			}
-			return annotatedString;
+			this.writeJson(
+					Paths.get(argFilePath.toFile().getAbsolutePath()
+							+ ".medicalannotator.js"), results);
 		} catch (Exception e) {
 			throw new AnnotationException(
 					"Exception while performing POS Annotation", e);
@@ -51,24 +51,40 @@ public class MedicalAnnotator {
 		}
 	}
 
-	private String toJsonString(List<Result> results) {
+	private void writeJson(Path argFilePath, List<Result> results) {
 		Gson gson = new Gson();
-		// new GsonBuilder().setPrettyPrinting().create();
-		String jsonOutput = gson.toJson(MetaMapUtils
-				.createMetaMapResults(results));
-		return jsonOutput;
+		Writer writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter(argFilePath.toFile()));
+			gson.toJson(MetaMapUtils.createMetaMapResults(results), writer);
+		} catch (Exception e) {
+			if (logger.isErrorEnabled()) {
+				logger.error(
+						"exception while serializing the result for file: "
+								+ argFilePath.toFile().getAbsolutePath(), e);
+			}
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (Exception ignore) {
+					// ignore
+				}
+			}
+		}
 	}
 
 	@SuppressWarnings("unused")
-	private String serializeResultsToDisk(Path argFilePath, List<Result> results) {
+	private void writeJavaObject(Path argFilePath, List<Result> results) {
+		List<MetaMapResult> mmResults = MetaMapUtils
+				.createMetaMapResults(results);
 		ObjectOutputStream oos = null;
 		try {
 			String serFileName = argFilePath.toAbsolutePath()
 					+ ".medicalannotator.ser";
 			oos = new ObjectOutputStream(new BufferedOutputStream(
 					new FileOutputStream(serFileName)));
-			oos.writeObject(results);
-			return serFileName;
+			oos.writeObject(mmResults);
 		} catch (Exception e) {
 			if (logger.isErrorEnabled()) {
 				logger.error(
@@ -84,7 +100,6 @@ public class MedicalAnnotator {
 				}
 			}
 		}
-		return null;
 	}
 
 	@SuppressWarnings("unused")

@@ -1,10 +1,11 @@
 package com.bignlp.langy.metamap.result;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.bignlp.langy.metamap.MatchMap;
 
-public class MetaMapEvaluation {
+public class MetaMapEvaluation  implements Serializable {
 	private int score;
 	private String conceptId;
 	private String conceptName;

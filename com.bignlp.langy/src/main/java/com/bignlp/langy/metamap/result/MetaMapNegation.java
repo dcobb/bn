@@ -1,12 +1,9 @@
 package com.bignlp.langy.metamap.result;
 
+import java.io.Serializable;
 import java.util.List;
 
-import com.bignlp.langy.metamap.ConceptPair;
-import com.bignlp.langy.metamap.Negation;
-import com.bignlp.langy.metamap.Position;
-
-public class MetaMapNegation {
+public class MetaMapNegation  implements Serializable{
 	private String type;
 	private String conceptId;
 	private String trigger;

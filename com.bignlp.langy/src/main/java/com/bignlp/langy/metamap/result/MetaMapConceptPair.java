@@ -1,8 +1,9 @@
 package com.bignlp.langy.metamap.result;
 
-import com.bignlp.langy.metamap.ConceptPair;
+import java.io.Serializable;
 
-public class MetaMapConceptPair implements ConceptPair {
+
+public class MetaMapConceptPair implements Serializable {
 	private String conceptId;
 	private String preferredName;
 

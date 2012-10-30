@@ -1,8 +1,9 @@
 package com.bignlp.langy.metamap.result;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MetaMapMapping {
+public class MetaMapMapping  implements Serializable{
 	private int score;
 	private List<MetaMapEvaluation> evaluations;
 

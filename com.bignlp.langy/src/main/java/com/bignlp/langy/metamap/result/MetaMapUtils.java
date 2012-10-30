@@ -14,7 +14,6 @@ import com.bignlp.langy.metamap.Phrase;
 import com.bignlp.langy.metamap.Position;
 import com.bignlp.langy.metamap.Result;
 import com.bignlp.langy.metamap.Utterance;
-import com.google.gson.JsonElement;
 
 public class MetaMapUtils {
 

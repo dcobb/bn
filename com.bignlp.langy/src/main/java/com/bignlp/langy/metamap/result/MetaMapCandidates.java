@@ -1,8 +1,9 @@
 package com.bignlp.langy.metamap.result;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MetaMapCandidates {
+public class MetaMapCandidates  implements Serializable{
 	private int totalCandidatesCount;
 	private int excludedCandidateCount;
 	private int prunedCandidateCount;

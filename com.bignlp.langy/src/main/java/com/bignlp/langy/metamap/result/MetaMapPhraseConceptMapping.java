@@ -1,8 +1,9 @@
 package com.bignlp.langy.metamap.result;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MetaMapPhraseConceptMapping {
+public class MetaMapPhraseConceptMapping  implements Serializable{
 	private MetaMapPhrase phrase;
 	private List<MetaMapEvaluation> candidates;
 	private MetaMapCandidates candidateInstance;

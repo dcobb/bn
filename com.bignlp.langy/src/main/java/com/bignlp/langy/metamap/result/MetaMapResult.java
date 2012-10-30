@@ -1,8 +1,9 @@
 package com.bignlp.langy.metamap.result;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MetaMapResult {
+public class MetaMapResult  implements Serializable {
 	private String inputText;
 	private List<MetaMapAcronym> acronyms;
 	private List<MetaMapNegation> negations;

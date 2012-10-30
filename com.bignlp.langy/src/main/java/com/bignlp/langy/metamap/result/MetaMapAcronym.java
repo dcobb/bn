@@ -1,10 +1,9 @@
 package com.bignlp.langy.metamap.result;
 
+import java.io.Serializable;
 import java.util.List;
 
-import com.bignlp.langy.metamap.AcronymsAbbrevs;
-
-public class MetaMapAcronym {
+public class MetaMapAcronym implements Serializable {
 	private String abbreviation;
 	private String expansion;
 	private List<String> cuis;
