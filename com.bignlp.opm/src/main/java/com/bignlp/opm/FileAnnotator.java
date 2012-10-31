@@ -23,7 +23,7 @@ public class FileAnnotator extends FileProcessor {
 	@Override
 	public void process() {
 		Path destPath = Paths.get(this.getPath().toFile().getAbsolutePath()
-				+ ".extracted.txt");
+				+ System.currentTimeMillis() + ".extracted.txt");
 		TextExtractor textExtractor = new TextExtractor(this.getPath(),
 				destPath);
 		textExtractor.extract();

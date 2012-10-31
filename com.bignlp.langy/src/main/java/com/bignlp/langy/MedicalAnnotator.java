@@ -13,12 +13,18 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import se.sics.prologbeans.PBTerm;
+
 import com.bignlp.langy.metamap.MetaMapConfig;
 import com.bignlp.langy.metamap.MmClient;
 import com.bignlp.langy.metamap.Result;
+import com.bignlp.langy.metamap.ResultImpl;
+import com.bignlp.langy.metamap.result.AnnotationBeanUtils;
+import com.bignlp.langy.metamap.result.DocumentAnnotationsBean;
 import com.bignlp.langy.metamap.result.MetaMapResult;
 import com.bignlp.langy.metamap.result.MetaMapUtils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class MedicalAnnotator {
 	private static Logger logger = LoggerFactory
@@ -39,8 +45,18 @@ public class MedicalAnnotator {
 			List<Result> results = mmClient.process(
 					MmClient.readInputFile(argFilePath.toFile()), System.out);
 			this.writeJson(
-					Paths.get(argFilePath.toFile().getAbsolutePath()
+					Paths.get(argFilePath.toFile().getAbsolutePath() + "."
+							+ System.currentTimeMillis()
 							+ ".medicalannotator.js"), results);
+
+			List<MetaMapResult> mmResults = MetaMapUtils
+					.createMetaMapResults(results);
+			DocumentAnnotationsBean documentAnnotationsBean = AnnotationBeanUtils
+					.createDocumentAnnotationsBean(mmResults);
+			this.writeDocumentAnnotationsBeanJson(
+					Paths.get(argFilePath.toFile().getAbsolutePath() + "."
+							+ System.currentTimeMillis() + ".dab.js"),
+					documentAnnotationsBean);
 		} catch (Exception e) {
 			throw new AnnotationException(
 					"Exception while performing POS Annotation", e);
@@ -51,8 +67,32 @@ public class MedicalAnnotator {
 		}
 	}
 
+	private void writeDocumentAnnotationsBeanJson(Path argFilePath,
+			DocumentAnnotationsBean documentAnnotationsBean) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		Writer writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter(argFilePath.toFile()));
+			gson.toJson(documentAnnotationsBean, writer);
+		} catch (Exception e) {
+			if (logger.isErrorEnabled()) {
+				logger.error(
+						"exception while serializing the result for file: "
+								+ argFilePath.toFile().getAbsolutePath(), e);
+			}
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (Exception ignore) {
+					// ignore
+				}
+			}
+		}
+	}
+
 	private void writeJson(Path argFilePath, List<Result> results) {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		Writer writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter(argFilePath.toFile()));
@@ -97,6 +137,49 @@ public class MedicalAnnotator {
 					oos.close();
 				} catch (Exception ignore) {
 					// ignore
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("unused")
+	private void writePrologMachineOutput(Path argFilePath, List<Result> results) {
+		if (results != null && !results.isEmpty()) {
+			Writer writer = null;
+			try {
+				writer = new BufferedWriter(
+						new FileWriter(argFilePath.toFile()));
+				for (Result result : results) {
+					if (result != null) {
+						String machineOutput = result.getMachineOutput();
+						String inputText = result.getInputText();
+						PBTerm pbTerm = PBTerm.makeTerm(machineOutput);
+						System.out
+								.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% class name of MMOPBList() : "
+										+ pbTerm.getClass().getName());
+						Result actualResult = new ResultImpl(pbTerm, inputText);
+						String actualMachineOutput = result.getMachineOutput();
+						System.out
+								.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ assertion of machine output ser/deser: "
+										+ machineOutput
+												.equals(actualMachineOutput));
+						writer.write(machineOutput);
+						writer.write("\n");
+					}
+				}
+			} catch (Exception e) {
+				if (logger.isErrorEnabled()) {
+					logger.error(
+							"exception while serializing the result for file: "
+									+ argFilePath.toFile().getAbsolutePath(), e);
+				}
+			} finally {
+				if (writer != null) {
+					try {
+						writer.close();
+					} catch (Exception ignore) {
+						// ignore
+					}
 				}
 			}
 		}

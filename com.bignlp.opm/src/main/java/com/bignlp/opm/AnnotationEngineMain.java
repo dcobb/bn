@@ -11,7 +11,7 @@ public class AnnotationEngineMain {
 	private static final String EXTENSIONS = "*.doc";
 	private static final String BASE_DIR = "../com.bignlp/testdata/psr/transcriptions";
 	private static final int QUEUE_SIZE = 1000;
-	private static final int NUM_THREADS = 1;// 70;
+	private static final int NUM_THREADS = 1;
 	private static final int NUM_ITERATIONS = 1;
 
 	public static void main(String[] args) {

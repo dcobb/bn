@@ -8,4 +8,5 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.bignlp.opm.AnnotationEngineMain"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="com.bignlp.opm"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-server -Xms2048m -Xmx2048m"/>
 </launchConfiguration>

@@ -68,7 +68,7 @@ public class MmClient {
 			// writeResults(results, out);
 			return results;
 		} catch (Exception e) {
-			MmServer.getInstance().startMetaMapServerInNewThread(this.port);
+			// MmServer.getInstance().startMetaMapServerInNewThread(this.port);
 			// throw e;
 		}
 		return null;
