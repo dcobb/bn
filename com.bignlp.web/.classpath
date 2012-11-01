@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/api/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="lib" path="conf"/>
+	<classpathentry kind="lib" path="lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/tiles-api-2.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/tiles-core-2.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/tiles-jsp-2.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/tiles-servlet-2.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/tiles-template-2.2.2.jar"/>
+	<classpathentry kind="lib" path="testdata"/>
+	<classpathentry kind="lib" path="/com.cyslab.craftvm.mongo.rest.server.extlib/bin-jars/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/com.cyslab.craftvm.mongo.rest.server.extlib/bin-jars/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="con" path="GROOVY_DSL_SUPPORT"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/spring"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
+	<classpathentry kind="con" path="org.springsource.ide.eclipse.gradle.dsld.classpathcontainer"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jetty"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
