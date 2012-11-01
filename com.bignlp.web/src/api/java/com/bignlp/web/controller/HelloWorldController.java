@@ -24,6 +24,8 @@ public class HelloWorldController {
 	/*
 	 * Here argFileName should be there in your testdata folder. Output of this
 	 * method is in the form of String.
+	 * 
+	 * URL: http://localhost:8080/hello/example
 	 */
 	@RequestMapping(value = "{argFileName}", method = RequestMethod.GET)
 	public @ResponseBody
@@ -62,6 +64,8 @@ public class HelloWorldController {
 	/*
 	 * Here argFileName should be there in your testdata folder. Output of this
 	 * method is in the form of JSON.
+	 * 
+	 * URL: http://localhost:8080/hello/json/example
 	 */
 	@RequestMapping(value = "/json/{argFileName}", method = RequestMethod.GET)
 	public @ResponseBody
