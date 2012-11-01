@@ -10,13 +10,17 @@
 	<classpathentry kind="lib" path="lib/tiles-servlet-2.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/tiles-template-2.2.2.jar"/>
 	<classpathentry kind="lib" path="testdata"/>
-	<classpathentry kind="lib" path="/com.cyslab.craftvm.mongo.rest.server.extlib/bin-jars/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="/com.cyslab.craftvm.mongo.rest.server.extlib/bin-jars/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-asl-1.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-mapper-asl-1.7.1.jar"/>
 	<classpathentry kind="con" path="GROOVY_DSL_SUPPORT"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/spring"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
 	<classpathentry kind="con" path="org.springsource.ide.eclipse.gradle.dsld.classpathcontainer"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/spring"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jetty"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
