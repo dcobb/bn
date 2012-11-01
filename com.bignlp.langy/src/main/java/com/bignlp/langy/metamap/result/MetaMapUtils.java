@@ -66,7 +66,7 @@ public class MetaMapUtils {
 					metaMapUtterance.setPosition(metaMapPosition);
 				}
 //				List<MetaMapPhraseConceptMapping> metaMapPhraseConceptMappingsList = new ArrayList<MetaMapPhraseConceptMapping>(); // buildPhraseConceptmapping(utterance);
-				List<MetaMapPhraseConceptMapping> metaMapPhraseConceptMappingsList = buildPhraseConceptmapping(utterance);
+				List<MetaMapPhraseCandidateMapping> metaMapPhraseConceptMappingsList = buildPhraseConceptmapping(utterance);
 				if (metaMapPhraseConceptMappingsList != null) {
 					metaMapUtterance
 							.setPhraseConceptMappings(metaMapPhraseConceptMappingsList);
@@ -78,14 +78,14 @@ public class MetaMapUtils {
 		return null;
 	}
 
-	private static List<MetaMapPhraseConceptMapping> buildPhraseConceptmapping(
+	private static List<MetaMapPhraseCandidateMapping> buildPhraseConceptmapping(
 			Utterance argUtterance) throws Exception {
 		if (argUtterance != null) {
 			List<PCM> pcmList = argUtterance.getPCMList();
 			if (pcmList != null && pcmList.size() > 0) {
-				List<MetaMapPhraseConceptMapping> metaMapPhraseConceptMappingsList = new ArrayList<MetaMapPhraseConceptMapping>();
+				List<MetaMapPhraseCandidateMapping> metaMapPhraseConceptMappingsList = new ArrayList<MetaMapPhraseCandidateMapping>();
 				for (PCM pcm : pcmList) {
-					MetaMapPhraseConceptMapping metaMapPhraseConceptMapping = new MetaMapPhraseConceptMapping();
+					MetaMapPhraseCandidateMapping metaMapPhraseConceptMapping = new MetaMapPhraseCandidateMapping();
 					MetaMapPhrase metaMapPhrase = buildMetaMapPhrase(pcm);
 					if (metaMapPhrase != null) {
 						metaMapPhraseConceptMapping.setPhrase(metaMapPhrase);

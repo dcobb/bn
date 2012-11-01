@@ -7,7 +7,7 @@ public class MetaMapUtterance  implements Serializable{
 	private String id;
 	private String text;
 	private MetaMapPosition position;
-	private List<MetaMapPhraseConceptMapping> phraseConceptMappings;
+	private List<MetaMapPhraseCandidateMapping> phraseConceptMappings;
 
 	public MetaMapUtterance() {
 		super();
@@ -15,7 +15,7 @@ public class MetaMapUtterance  implements Serializable{
 
 	public MetaMapUtterance(String argsId, String argsText,
 			MetaMapPosition argsPosition,
-			List<MetaMapPhraseConceptMapping> argsPhraseConceptMappings) {
+			List<MetaMapPhraseCandidateMapping> argsPhraseConceptMappings) {
 		super();
 		this.id = argsId;
 		this.text = argsText;
@@ -47,12 +47,12 @@ public class MetaMapUtterance  implements Serializable{
 		this.position = argsPosition;
 	}
 
-	public List<MetaMapPhraseConceptMapping> getPhraseConceptMappings() {
+	public List<MetaMapPhraseCandidateMapping> getPhraseConceptMappings() {
 		return this.phraseConceptMappings;
 	}
 
 	public void setPhraseConceptMappings(
-			List<MetaMapPhraseConceptMapping> argsPhraseConceptMappings) {
+			List<MetaMapPhraseCandidateMapping> argsPhraseConceptMappings) {
 		this.phraseConceptMappings = argsPhraseConceptMappings;
 	}
 
