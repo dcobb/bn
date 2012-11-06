@@ -23,15 +23,9 @@ import com.google.common.io.Files;
 public class TextExtractor {
 	private Path srcPath;
 	private Path destPath;
-	private String extractedText;
 
 	public TextExtractor() {
 		// Default Constructor
-	}
-
-	public TextExtractor(Path argsSourcePath) {
-		super();
-		this.srcPath = argsSourcePath;
 	}
 
 	public TextExtractor(Path argsSourcePath, Path argsDestPath) {
@@ -40,12 +34,27 @@ public class TextExtractor {
 		this.destPath = argsDestPath;
 	}
 
+	public Path getSrcPath() {
+		return this.srcPath;
+	}
+
+	public void setSrcPath(Path argsSrcPath) {
+		this.srcPath = argsSrcPath;
+	}
+
+	public Path getDestPath() {
+		return this.destPath;
+	}
+
+	public void setDestPath(Path argsDestPath) {
+		this.destPath = argsDestPath;
+	}
+
 	public void extract() {
 		Writer textWriter = null;
 		try {
-			textWriter = this.destPath != null ? new FileWriter(
-					destPath.toFile()) : new StringWriter();
-			this.extractedText = extract(srcPath, textWriter);
+			textWriter = new FileWriter(destPath.toFile());
+			extract(srcPath, textWriter);
 		} catch (Exception e) {
 			throw new RuntimeException("Could not extract text from: "
 					+ srcPath + " and write to:" + destPath, e);
@@ -60,18 +69,7 @@ public class TextExtractor {
 		}
 	}
 
-	public String getExtractedText() {
-		try {
-			return this.destPath != null ? Files.toString(
-					this.destPath.toFile(), Charset.forName("UTF-8"))
-					: this.extractedText;
-		} catch (IOException e) {
-			throw new RuntimeException("could not read text from file: "
-					+ this.destPath);
-		}
-	}
-
-	public static String extract(Path argSrcPath, Writer textWriter) {
+	public static void extract(Path argSrcPath, Writer textWriter) {
 		TikaInputStream tikaInputStream = null;
 		try {
 			Metadata metadata = new Metadata();
@@ -101,8 +99,6 @@ public class TextExtractor {
 				}
 			}
 		}
-		String extractedText = textWriter.toString();
-		return extractedText;
 	}
 
 	private static URL getUrl(Path argPath) {
@@ -112,13 +108,5 @@ public class TextExtractor {
 		} catch (Exception e) {
 			throw new RuntimeException("Could not create the URL", e);
 		}
-	}
-
-	public static void main(String args[]) throws Exception {
-		TextExtractor textExtractor = new TextExtractor(
-				Paths.get("../com.bignlp/testdata/psr/transcriptions/sample1.doc"));
-		textExtractor.extract();
-		String extractedText = textExtractor.getExtractedText();
-		System.out.println(extractedText);
 	}
 }

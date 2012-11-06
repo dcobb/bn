@@ -6,6 +6,7 @@ public class PhrasePartBean {
 	private int startPosition;
 	private int endPosition;
 	private String phrase;
+	private String conceptName;
 	private List<String> tags;
 	private String summary;
 
@@ -21,6 +22,14 @@ public class PhrasePartBean {
 		this.phrase = argsPhrase;
 		this.tags = argsTags;
 		this.summary = argsSummary;
+	}
+
+	public String getConceptName() {
+		return this.conceptName;
+	}
+
+	public void setConceptName(String argsConceptName) {
+		this.conceptName = argsConceptName;
 	}
 
 	public int getStartPosition() {

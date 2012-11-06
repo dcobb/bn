@@ -65,7 +65,10 @@ public class MetaMapUtils {
 					metaMapPosition.setY(position.getY());
 					metaMapUtterance.setPosition(metaMapPosition);
 				}
-//				List<MetaMapPhraseConceptMapping> metaMapPhraseConceptMappingsList = new ArrayList<MetaMapPhraseConceptMapping>(); // buildPhraseConceptmapping(utterance);
+				// List<MetaMapPhraseConceptMapping>
+				// metaMapPhraseConceptMappingsList = new
+				// ArrayList<MetaMapPhraseConceptMapping>(); //
+				// buildPhraseConceptmapping(utterance);
 				List<MetaMapPhraseCandidateMapping> metaMapPhraseConceptMappingsList = buildPhraseConceptmapping(utterance);
 				if (metaMapPhraseConceptMappingsList != null) {
 					metaMapUtterance
@@ -90,13 +93,15 @@ public class MetaMapUtils {
 					if (metaMapPhrase != null) {
 						metaMapPhraseConceptMapping.setPhrase(metaMapPhrase);
 					}
-//					MetaMapCandidates metaMapCandidates = new MetaMapCandidates(); // buildMetaMapCandidates(pcm);
+					// MetaMapCandidates metaMapCandidates = new
+					// MetaMapCandidates(); // buildMetaMapCandidates(pcm);
 					MetaMapCandidates metaMapCandidates = buildMetaMapCandidates(pcm);
 					if (metaMapCandidates != null) {
 						metaMapPhraseConceptMapping
 								.setCandidateInstance(metaMapCandidates);
 					}
-//					List<Ev> candidatesList = new ArrayList<Ev>(); // pcm.getCandidateList();
+					// List<Ev> candidatesList = new ArrayList<Ev>(); //
+					// pcm.getCandidateList();
 					List<Ev> candidatesList = pcm.getCandidateList();
 					List<MetaMapEvaluation> metaMapEvaluationsList = buildEvList(candidatesList);
 					if (metaMapEvaluationsList != null
@@ -199,8 +204,8 @@ public class MetaMapUtils {
 				metaMapEvaluation.setConceptName(ev.getConceptName());
 				metaMapEvaluation.setHead(ev.isHead());
 				metaMapEvaluation.setMatchedWords(ev.getMatchedWords());
-				metaMapEvaluation.setMatchMap(ev.getMatchMap());
-				metaMapEvaluation.setMatchMaps(ev.getMatchMapList());
+				// metaMapEvaluation.setMatchMap(ev.getMatchMap());
+				// metaMapEvaluation.setMatchMaps(ev.getMatchMapList());
 				metaMapEvaluation.setOvermatch(ev.isOvermatch());
 				List<Position> positionsList = ev.getPositionalInfo();
 				if (positionsList != null && positionsList.size() > 0) {

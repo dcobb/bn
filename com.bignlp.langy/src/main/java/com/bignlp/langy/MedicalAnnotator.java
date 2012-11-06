@@ -42,8 +42,10 @@ public class MedicalAnnotator {
 
 	public void annotate(Path argFilePath) {
 		try {
-			List<Result> results = mmClient.process(
-					MmClient.readInputFile(argFilePath.toFile()), System.out);
+			String inputFileContentAsString = MmClient
+					.readInputFile(argFilePath.toFile());
+			List<Result> results = mmClient.process(inputFileContentAsString,
+					System.out);
 			this.writeJson(
 					Paths.get(argFilePath.toFile().getAbsolutePath() + "."
 							+ System.currentTimeMillis()
@@ -52,7 +54,8 @@ public class MedicalAnnotator {
 			List<MetaMapResult> mmResults = MetaMapUtils
 					.createMetaMapResults(results);
 			DocumentAnnotationsBean documentAnnotationsBean = AnnotationBeanUtils
-					.createDocumentAnnotationsBean(mmResults);
+					.createDocumentAnnotationsBean(inputFileContentAsString,
+							mmResults);
 			this.writeDocumentAnnotationsBeanJson(
 					Paths.get(argFilePath.toFile().getAbsolutePath() + "."
 							+ System.currentTimeMillis() + ".dab.js"),
