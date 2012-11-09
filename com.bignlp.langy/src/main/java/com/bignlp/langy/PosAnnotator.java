@@ -1,9 +1,12 @@
 package com.bignlp.langy;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import opennlp.tools.cmdline.postag.POSModelLoader;
 import opennlp.tools.postag.POSModel;
@@ -26,32 +29,27 @@ public class PosAnnotator {
 		// Default Constructor
 	}
 
-	public String annotate(Path argFilePath) {
-		// PerformanceMonitor perfMon = new PerformanceMonitor(System.err,
-		// "sent");
+	public void annotate(Path argFilePath) {
 		POSTaggerME tagger = new POSTaggerME(model);
 
 		ObjectStream<String> lineStream = null;
+		BufferedWriter bw = null;
 
 		try {
 			lineStream = new PlainTextByLineStream(new BufferedReader(
 					new FileReader(argFilePath.toFile())));
-
-			// perfMon.start();
-			String line;
+			Path posTextFilePath = Paths.get(argFilePath.toFile()
+					.getAbsolutePath()
+					+ System.currentTimeMillis()
+					+ ".pos.txt");
+			bw = new BufferedWriter(new FileWriter(posTextFilePath.toFile()));
+			String line = null;
 			while ((line = lineStream.read()) != null) {
-
 				String whitespaceTokenizerLine[] = WhitespaceTokenizer.INSTANCE
 						.tokenize(line);
 				String[] tags = tagger.tag(whitespaceTokenizerLine);
-
 				POSSample sample = new POSSample(whitespaceTokenizerLine, tags);
-				String result = sample.toString();
-				if (logger.isDebugEnabled()) {
-					logger.debug(result);
-				}
-				// perfMon.incrementCounter();
-				return result;
+				bw.write(sample.toString());
 			}
 		} catch (Exception e) {
 			throw new AnnotationException(
@@ -64,8 +62,13 @@ public class PosAnnotator {
 					// ignore
 				}
 			}
-			// perfMon.stopAndPrintFinalResult();
+			if (bw != null) {
+				try {
+					bw.close();
+				} catch (Exception ignore) {
+					// ignore
+				}
+			}
 		}
-		return null;
 	}
 }

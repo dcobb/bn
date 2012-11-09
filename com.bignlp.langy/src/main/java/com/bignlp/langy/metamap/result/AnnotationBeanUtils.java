@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.bignlp.langy.metamap.MmClient;
 import com.google.gson.Gson;
@@ -13,24 +15,23 @@ public class AnnotationBeanUtils {
 	private static final int FIRST_ELEMENT = 0;
 
 	public static DocumentAnnotationsBean createDocumentAnnotationsBean(
-			List<MetaMapResult> argMmResults) {
+			String argInputFileContentAsString, List<MetaMapResult> argMmResults) {
 		DocumentAnnotationsBean documentAnnotationsBean = new DocumentAnnotationsBean();
 		DocumentBean documentBean = createDocument();
 		documentAnnotationsBean.setDocument(documentBean);
-		InputBean inputBean = createInputBean();
+		InputBean inputBean = createInputBean(argInputFileContentAsString);
 		documentAnnotationsBean.setInput(inputBean);
 		List<AnnotationBean> annotationBeans = createAnnotationBean(argMmResults);
 		documentAnnotationsBean.setAnnotations(annotationBeans);
 		return documentAnnotationsBean;
 	}
 
-	private static InputBean createInputBean() {
+	private static InputBean createInputBean(String argInputFileContentAsString) {
 		InputBean inputBean = new InputBean();
 		inputBean.setContentId("4567");
 		inputBean.setCharSet("UTF-8");
 		inputBean.setContentType("text/plain");
-		inputBean
-				.setContent("Heregoesall the tika extracted content which was saved to isr");
+		inputBean.setContent(argInputFileContentAsString);
 		return inputBean;
 	}
 
@@ -90,6 +91,7 @@ public class AnnotationBeanUtils {
 						for (MetaMapPhraseCandidateMapping pcm : pcms) {
 							if (pcm != null) {
 								AnnotationBean annotationBean = createAnnotationBean(pcm);
+								// rollupAnnotationBeanPhraseParts(annotationBean);
 								annotationBeans.add(annotationBean);
 							}
 						}
@@ -99,6 +101,58 @@ public class AnnotationBeanUtils {
 			return annotationBeans;
 		}
 		return null;
+	}
+
+	@SuppressWarnings("unused")
+	private static void rollupAnnotationBeanPhraseParts(
+			AnnotationBean argsAnnotationBean) {
+		if (argsAnnotationBean != null) {
+			AnnotationDetailsBean details = argsAnnotationBean.getDetails();
+			if (details != null) {
+				List<PhrasePartBean> phraseParts = details.getPhraseParts();
+				rollupPhraseParts(phraseParts);
+			}
+		}
+	}
+
+	private static List<PhrasePartBean> rollupPhraseParts(
+			List<PhrasePartBean> argPhraseParts) {
+		if (argPhraseParts != null && !argPhraseParts.isEmpty()) {
+			PhrasePartBeanComparator comparator = new PhrasePartBeanComparator();
+			List<PhrasePartBean> rolledUpPhraseParts = new ArrayList<PhrasePartBean>();
+			Set<Integer> rolledUpIndexes = new LinkedHashSet<Integer>();
+			for (int i = 0; i < argPhraseParts.size(); i++) {
+				PhrasePartBean currentPhrasePartBean = argPhraseParts.get(i);
+				if (currentPhrasePartBean != null) {
+					for (int j = i + 1; i < j && j < argPhraseParts.size(); j++) {
+						if (!rolledUpIndexes.contains(j)) {
+							PhrasePartBean iteratingPhrasePartBean = argPhraseParts
+									.get(j);
+							if (comparator.compare(iteratingPhrasePartBean,
+									currentPhrasePartBean) == 0) {
+								List<String> currentPhrasePartBeanTags = currentPhrasePartBean
+										.getTags();
+								List<String> iteratingPhrasePartBeanTags = iteratingPhrasePartBean
+										.getTags();
+								for (String tag : iteratingPhrasePartBeanTags) {
+									if (!currentPhrasePartBeanTags
+											.contains(tag)) {
+										currentPhrasePartBeanTags.add(tag);
+									}
+								}
+								rolledUpIndexes.add(j);
+							}
+						}
+					}
+				}
+			}
+			for (int i = 0; i < argPhraseParts.size(); i++) {
+				if (!rolledUpIndexes.contains(i)) {
+					rolledUpPhraseParts.add(argPhraseParts.get(i));
+				}
+			}
+		}
+		return argPhraseParts;
 	}
 
 	private static AnnotationBean createAnnotationBean(
@@ -114,7 +168,7 @@ public class AnnotationBeanUtils {
 			if (mmPosition != null) {
 				int startPosition = mmPosition.getX();
 				int length = mmPosition.getY();
-				int endPosition = startPosition + length - 1;
+				int endPosition = startPosition + length;
 				annotationBean.setStartPosition(startPosition);
 				annotationBean.setEndPosition(endPosition);
 			}
@@ -144,6 +198,7 @@ public class AnnotationBeanUtils {
 			phrasePartBean.setTags(semanticTypes);
 			String preferredName = ev.getPreferredName();
 			int score = ev.getScore();
+			phrasePartBean.setConceptName(conceptName);
 			phrasePartBean.setSummary(getPhasePartSummaryFromConceptId(
 					conceptId, conceptName, preferredName, score));
 			List<MetaMapPosition> mmPositions = ev.getPositions();
@@ -152,7 +207,7 @@ public class AnnotationBeanUtils {
 				if (mmPosition != null) {
 					int startPosition = mmPosition.getX();
 					int length = mmPosition.getY();
-					int endPosition = startPosition + length - 1;
+					int endPosition = startPosition + length;
 					phrasePartBean.setStartPosition(startPosition);
 					phrasePartBean.setEndPosition(endPosition);
 				}
