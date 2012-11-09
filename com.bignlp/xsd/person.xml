@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person xmlns="http://xmlns.bignlp.com/person/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.bignlp.com/person/v1 person.xsd ">
+	<id>idvalue0</id>
+	<title>Mr.</title>
+	<firstName>Amar</firstName>
+	<lastName>token</lastName>
+	<middleName>token</middleName>
+	<suffix>token</suffix>
+	<dateOfBirth>2001-01-01</dateOfBirth>
+	<gender>male</gender>
+	<race>white</race>
+	<address>
+		<streetAddress>token</streetAddress>
+		<city>token</city>
+		<state>token</state>
+		<country>token</country>
+		<postalCode>token</postalCode>
+	</address>
+	<child>idvalue0</child>
+</person>

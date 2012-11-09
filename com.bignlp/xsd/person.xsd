@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://xmlns.bignlp.com/person/v1" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xmlns.bignlp.com/person/v1">
+
+    <element name="person" type="tns:Person"></element>
+    
+    <complexType name="Person">
+    	<sequence>
+    		<element name="id" type="ID" maxOccurs="1" minOccurs="1"></element>
+    		<element name="title" type="token" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="firstName" type="token" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="lastName" type="token" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="middleName" type="token" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="suffix" type="token" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="dateOfBirth" type="date" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="gender" type="tns:Gender" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="race" type="tns:Race" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="address" type="tns:Address" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="child" type="IDREF" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <simpleType name="Gender">
+    	<restriction base="string">
+    		<enumeration value="male"></enumeration>
+    		<enumeration value="female"></enumeration>
+    		<enumeration value="other"></enumeration>
+    		<enumeration value=""></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="Race">
+    	<restriction base="string">
+    		<enumeration value="white"></enumeration>
+    		<enumeration value="blackOrAfrican"></enumeration>
+    		<enumeration value="asian"></enumeration>
+    		<enumeration value="american Indian"></enumeration>
+    		<enumeration value="native Hawaiian"></enumeration>
+    		<enumeration value="latino"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <complexType name="Address">
+    	<sequence>
+    		<element name="streetAddress" type="token" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="city" type="token" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="state" type="token" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="country" type="token" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="postalCode" type="token" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    	</sequence>
+    </complexType>
+</schema>
